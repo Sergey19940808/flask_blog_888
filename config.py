@@ -5,8 +5,8 @@ SECRET_KEY = 'secret_key'
 SECURITY_PASSWORD_SALT = '\x87\xc6\xfd-=\x10\x02\x18#|\xb8\xe1E|\xaa)\xc2\x02rz\xd7\xc8\xd7$\x017\xbeb\x99'
 WTF_CSRF_ENABLED = True
 DEBUG = True
-# настройка БД
 
+# настройка БД
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # mail server settings
