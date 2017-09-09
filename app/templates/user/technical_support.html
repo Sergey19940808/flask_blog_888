@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<!-- стр технической поддержки проекта -->
+<div class="support">
+    <h2>Служба технической поддержки проекта</h2>
+    <br>
+    <p><big><big>alekseyserzh88@gmail.com</big></big></p>
+    <p><big><big>Напишите свой вопрос на вышеуказанный электронный адрес администратору ресурса "Поэтический блог" и он
+    решит Вашу проблему. Либо напишите свой вопрос или пожелание в форму ниже и администратор ответит Вам.</big></big></p>
+    <p><big><big>Чтобы увидеть ответы администратора нажмите на кнопку "Написать или посмотреть ответы"</big></big></p>
+</div>
+
+<form class="form-support" method="post" action="{{ url_for('technical_support', id=message.id) }}">
+    <div class=field>
+        {{ form.hidden_tag() }}
+        <p>{{ form.body.label }}:</p>
+        <br>
+        <div class="field-field">
+            <p>{{ form.body(cols=52, rows=4) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.body %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary"><h5>Отправить</h5></button>
+    </div>
+</form>
+
+<div class="show-message">
+    <br>
+    <h4>Вопросы и пожелания по работе сайта:</h4>
+    <br>
+    <!-- сообщения в службу поддержки с ответами -->
+    {% for message in message.items %}
+    <ul>
+        <table>
+            <tr valign="top">
+                <td><img src="{{ message.support.avatar(70) }}"></td>
+                <td><i>{{ message.support.nickname }} сказал:</i>
+                    <br><p>{{ message.body }}</p>
+                    <i>{{ message.pub_date }}</i>
+                    <a href="{{ url_for('comment_support', id=message.id) }}"
+                    class="btn btn-info-outline" role="button">
+                    Посмотреть ответы администратора</a>
+                </td>
+            </tr>
+        </table>
+    </ul>
+    {% endfor %}
+</div>
+
+<!-- пагинация сообщений в поддержку -->
+{% include 'user/__support_pagination.html' %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<!-- страница ошибки 404 -->
+<body>
+<h1>Произошла непредвиденная ошибка.</h1>
+<p>Администратор получил уведомление. Приносим извенения за неудобства!</p>
+<p><a href="{{ url_for('index') }}" class="btn btn-danger-outline" role="button">Назад</a></p>
+</body>
+{% endblock %}

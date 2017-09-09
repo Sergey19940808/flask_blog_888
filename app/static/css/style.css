@@ -1,0 +1,61 @@
+html                    { position: relative; min-height: 100%; }
+body                    { background-image: url("image/image1.jpg"); margin-bottom: 120px !important; }
+p                       { color: white; }
+h1                      { color: MediumAquamarine; }
+h6                      { text-align: center; }
+.field                  { clear:both; text-align: center; }
+.field p                { color: white; }
+.field-field p          { color: black; }
+.field button           { text-align: center; }
+.field h1               { color: MediumAquamarine; }
+.field h2               { color: dodgerblue; }
+.field-2                { text-align: left; -webkit-border-radius:50px;-moz-border-radius:50px;border-radius:50px; }
+.field-2 p              { color: black; }
+.login-form             { border: 2px deepskyblue; border-style: solid; width: 40em;
+                          height: auto; margin-left: 21%; margin-top: 12%;
+                         -webkit-border-bottom-right-radius: 5px; -webkit-border-top-right-radius: 5px;
+                         -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px;}
+.login-form h1          { color: MediumAquamarine; }
+.login-form-reg         { border: 2px deepskyblue; border-style: solid;
+                          width: 40em; height: auto; margin-left: 21%; margin-top: 4%;
+                          -webkit-border-bottom-right-radius: 5px; -webkit-border-top-right-radius: 5px;
+                          -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
+.pagination             { margin-left: 28%; }
+.footer                 { position: absolute; bottom: 0; width: 100%; height: 85px; background-color: #f5f5f5;
+	                      background: #39b54a; color: #fff; }
+.bg-info                { text-align: right; width: 16em; heigh: 15 px; margin-left: 30%}
+.entry p                 { margin: 0 auto; text-align: center; }
+.entry strong           { color: white; }
+.entry pre              { color: dodgerblue; }
+.flash h3               { color: blue; text-align: center; }
+.btn btn-info           { text-align: center; }
+.show_entry             { text-align: center; }
+.show_entry pre         { color: dodgerblue; }
+.comment                { margin-left: 17%; overflow: hidden; }
+.comment i              { color: white; }
+.comment p              { color: dodgerblue; }
+.text                   { text-align: center; }
+.email h1               { color: MediumAquamarine; }
+.index h1               { color: MediumAquamarine; }
+.user h1                { color: MediumAquamarine; }
+.user pre               { color: dodgerblue; }
+.edit h1                { color: MediumAquamarine; }
+.how_author h2          { color: MediumAquamarine; }
+.contacts h4            { color: MediumAquamarine; }
+.donate h2              { color: MediumAquamarine; }
+.donate h4              { color: dodgerblue; }
+.support h2             { color: MediumAquamarine; }
+.show-message ul        { margin-left: 10%; }
+.show-message h4        { text-align: center; color: MediumAquamarine; }
+.show-message i         { color: white; }
+.show-message p         { color: dodgerblue; overflow: wrap; }
+.form-comment pre       { color: dodgerblue; }
+.our_about h5           { color: MediumAquamarine; }
+.views_users h2         { color: MediumAquamarine; }
+.views_users table      { color: dodgerblue; }
+.views_users tbody      { color: white; }
+.admin_link             { text-align: center; }
+.nav                    { background-color: paleturquoise; }
+. nav hr                { color: darkturquoise; }
+
+

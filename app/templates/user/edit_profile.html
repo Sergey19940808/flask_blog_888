@@ -1,0 +1,42 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!-- стр редактирования профиля -->
+<div class="edit">
+<h1>Редактирование вашего профиля</h1>
+<br>
+<form action="" method="post" name="{{ url_for('edit_profile') }}">
+    {{form.hidden_tag()}}
+    <div class="field-2">
+        <p>{{ form.nickname.label }}:</p>
+        <kbd>Можно изменить никнейм</kbd>
+        <br>
+        <br>
+        <p>{{ form.nickname(size=24) }}</p>
+        <div class="text-danger">
+            {% for error in form.errors.nickname %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field-2>
+        <br>
+        <p>{{ form.about_me.label }}:</p>
+        <p><kbd>Напишите о себе, обратите внимание:</kbd></p>
+        <p><kbd>Пишите не длинные предложения, соблюдайте отступы,</kbd></p>
+        <p><kbd>и сразу переходите на следующую строку клавишей 'Enter'</kbd></p>
+        <br>
+        <br>
+        <pre>{{ form.about_me(cols=32, rows=4, maxlength=1000) }}</pre>
+        <div class="text-danger">
+            {% for error in form.errors.about_me %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+</form>
+</div>
+{% endblock %}

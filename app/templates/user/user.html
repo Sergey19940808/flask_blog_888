@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<!-- отображение аватара пользователя, информации о нём, время последней актиновсти, редактирование инфы о себе -->
+<div class="user">
+<table>
+    <tr valign="top">
+        <td><img src="{{ user.avatar(170) }}"></td>
+        <td>
+            <h1>Пользователь: {{user.nickname}}</h1>
+            {% if user.about_me %}
+            <pre>{{ user.about_me }}</pre>
+            {% endif %}
+            {% if not user.about_me %}<p><b>'Здесь будет находится информация о Вас, нажмите редактировать, чтобы её
+            добавить.'</b></p>{% endif %}
+            {% if user.last_seen %}<p><i>Последняя дата посещения своей страницы:
+            {{ user.last_seen }}</i></p>{% endif%}
+
+            {% if user.id == g.user.id %}
+            <a href="{{ url_for('edit_profile') }}"
+            class="btn btn-primary-outline" role="button">Редактировать</a> >
+            <a align="left" href="{{ url_for('delete_user', id=user.id) }}"
+            class="btn btn-danger-outline" role="button">Удалить профиль</a> >
+            <a href="{{ url_for('user_email_change') }}" class="btn btn-warning-outline"
+            role="button">Изменение электронной почты</a> >
+            <a href="{{ url_for('user_password_change') }}" class="btn btn-info-outline"
+            role="button">Изменение вашего пароля</a>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+<hr>
+<h1 align=left>Мои творческие работы:</h1> <!-- добавление записи-->
+{% if user.id == g.user.id %}
+<p align=center><a href="{{ url_for('add') }}" class="btn btn-success-outline"
+                   role="button">Добавить новый стих</a></p>
+{% endif %}
+</div>
+<br>
+<br>
+<!-- записи пользователя и пагинация-->
+{% include 'user/__show_entries_user.html' %}
+{% endblock %}
+
+			

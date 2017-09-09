@@ -1,0 +1,86 @@
+<!DOCTYPE html> <!-- базовый шаблон -->
+<html lang="ru">
+<head> <!-- ссылки на картинку файлы css и шрифты -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="image/gif" rel="shortcut icon" href="/static/css/image/ahe.gif"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+          integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <title>{% block title %}{{ title }}{% endblock %} - блог поэтов</title>
+
+
+  </head>
+
+  <body>
+
+    <nav class="nav">
+        <br> <!-- блок навигации -->
+        {% if current_user.email_confirmed and current_user.is_authenticated %}
+            <a href="{{ url_for('index') }}" class="btn btn-primary-outline" role="button">Домашняя</a> >
+            <a href="{{ url_for('user', nickname=g.user.nickname) }}" class="btn btn-primary-outline"
+                role="button">Ваша страница</a> >
+            <a href="{{ url_for('our_about')  }}" class="btn btn-primary-outline" role="button">О нас</a> >
+            <a href="{{ url_for('how_author')  }}" class="btn btn-primary-outline" role="button">Как стать автором</a> >
+            <a href="{{ url_for('contacts')  }}" class="btn btn-primary-outline" role="button">Наши контакты</a> >
+            <a href="{{ url_for('donate')  }}" class="btn btn-primary-outline" role="button">Помощь проекту</a> >
+            <a href="{{ url_for('technical_support')  }}" class="btn btn-primary-outline"
+                role="button">Cлужба тех. поддержки</a> >
+            <a href="{{ url_for('logout')  }}" class="btn btn-primary-outline" role="button">Выйти</a>
+
+        {% elif current_user.authenticated %}
+            <a href="{{ url_for('unconfirmed') }}" class="btn btn-primary-outline" role="button">Подтвердить</a> >
+            <a href="{{ url_for('logout')  }}" class="btn btn-primary-outline" role="button">Выйти</a>
+        {% endif %}
+
+        {% if current_user.role == 'admin' %}
+            <div class="admin_link">
+                <br>
+                <br>
+                <br>
+                -><a href="{{ url_for('admin_view_users') }}" class="btn btn-primary-outline" role="button">
+                Страница администратора</a><-
+            </div>
+        {% endif %}
+
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('login')  }}" class="btn btn-primary-outline" role="button">Войти</a> >
+            <a href="{{ url_for('register')  }}" class="btn btn-primary-outline" role="button">Регистрация</a>
+        {% endif %}
+        <hr>
+    </nav>
+
+
+  <!-- вывод сообщений -->
+  {% block body %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class=text-info>
+      {% for message in messages %}
+        <h3 align="center">{{ message }}</h3>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% endwith %}
+  {% endblock %}
+<!-- подключение скрипта js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+        integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+        crossorigin="anonymous"></script>
+
+</body>
+
+  {% block footer %}
+  <!-- низ страницы -->
+  <div class="footer">
+    <br>
+    <h4 align="justify">Блог талантливых и креативных - "Поэтический блог". Все права защищены
+    порталом творческих людей 2016- 2017</h4>
+  </div>
+  {% endblock %}
+
+  {% block content %}{% endblock %}
+
+
+</html>

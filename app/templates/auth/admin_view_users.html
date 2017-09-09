@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+<!-- шаблон для показа и управления пользователями -->
+{% block content %}
+<div class="views_users">
+    <h2>Административная страница: список пользователей</h2>
+    <br>
+    <table class="table table-default">
+        <tr>
+          <th> ID Пользователя </th>
+          <th> Никнейм </th>
+          <th> Адрес электронной почты </th>
+          <th> Обо мне </th>
+          <th> Последнее посещение </th>
+          <th> Аутентифицирован ? </th>
+          <th> Почта подтверждена ? </th>
+          <th> Роль </th>
+        </tr>
+      <tbody>
+        {% for users in users %}
+          <tr>
+            <td> {{ users.id }} </td>
+            <td> {{ users.nickname }} </td>
+            <td> {{ users.email }} </td>
+            <td> {{ users.about_me }} </td>
+            <td> {{ users.last_seen }} </td>
+            <td> {{ users.authenticated }} </td>
+            <td> {{ users.email_confirmed }} </td>
+            <td> {{ users.role }} </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

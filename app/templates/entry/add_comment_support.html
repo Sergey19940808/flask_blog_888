@@ -1,0 +1,51 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<!-- стр комментирования сообщений в службу поддержки -->
+<h3 class="text"><kbd>Вы находитесь на странице выбранного сообщения</kbd></h3>
+<br>
+<div class="show_entry">
+   <img src="{{ support.support.avatar(70) }}">
+   <p>Пользователь: <strong>{{ support.support.nickname }}</strong></p>
+   <p><strong>Тема: {{support.body}}</strong></p>
+   <p>{{ support.pub_date }}</p>
+   <br>
+</div>
+
+{% if current_user.role == 'admin' %}
+<form class="form-comment" method=post action="{{ url_for('comment_support',id=support.id) }}" align=center>
+    <!-- форма для добавления коммента к сообщению -->
+    {{ form.hidden_tag() }}
+    <p><kbd>{{ form.body.label }}:</kbd></p>
+    <pre>{{ form.body(cols="52", rows="4", wrap="hard") }}</pre>
+    <div class="text-danger" align="center">
+        {% for error in form.errors.body %}
+        <span>{{ error }}</span>
+        {% endfor %}
+        <br>
+    </div>
+    <br>
+    <button type=submit class="btn btn-primary">Добавить комментарий</button>
+</form>
+{% endif %}
+
+<br>
+<h3 align="center" style="color: MediumAquamarine;">Ответ администратора:</h3>
+<br>
+{% for comment_support in comment_support %}
+<div class="comment"> <!-- комментарии сообщения -->
+    <ul>
+        <table>
+            <tr valign="top">
+                <td><img src="{{ comment_support.comment_support.avatar(70) }}"></td>
+                <td><i>{{ comment_support.comment_support.nickname }} сказал:</i>
+                    <br><p>{{ comment_support.body }}</p>
+                    <i>{{ comment_support.pub_date }}</i>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </ul>
+</div>
+{% endfor %}
+
+{% endblock %}

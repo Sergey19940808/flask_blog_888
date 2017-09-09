@@ -1,0 +1,29 @@
+<!-- записи всех пользователей -->
+{% for entry in entry.items %}
+<ul align="center">
+    <img src="{{ entry.users.avatar(70) }}">
+    <p>Пользователь: <strong>{{ entry.users.nickname }}</strong></p>
+    <br>
+    <p><strong>{{entry.title}}</strong></p>
+    <br>
+    <pre><big>{{ entry.text }}</big></pre>
+    <p>{{ entry.pub_date }}</p>
+    <a href="{{ url_for('entry_comments', id=entry.id) }}" class="btn btn-info-outline"
+    role="button">Посмотреть или оставить комментарий</a>
+    <br>
+    <br>
+</ul>
+{% endfor %}
+
+<div class="pagination">
+    <!-- пагинация комментариев -->
+    {% if entry.has_prev %}<a href="{{ url_for('index', page=entry.prev_num) }}"
+    class="btn btn-info btn-lg active" role="button">&lt;&lt; Предыдущая страница</a>{%
+    else %}<a href="{{ url_for('index', page=entry.prev_num) }}"
+    class="btn btn-info btn-lg disabled" role="button">&lt;&lt; Предыдущая страница </a>{% endif %}
+
+    {% if entry.has_next %}<a href="{{ url_for('index', page=entry.next_num) }}"
+    class="btn btn-info btn-lg active" role="button">Следующая страница&gt;&gt;</a>
+    {% else %}<a href="{{ url_for('index', page=entry.next_num) }}"
+    class="btn btn-info btn-lg disabled" role="button">Следующая страница &gt;&gt;</a>{% endif %}
+</div>

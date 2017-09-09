@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!-- стр редактирования записи -->
+<form class=login-form method=post>
+    <h1 align=center>Измените нужные поля, для изменения вашего стиха:</h1>
+    <p>
+    {{ form.hidden_tag() }}
+    <div class=field>
+        <br>
+        <p>{{ form.title.label }}:</p>
+        <div class="field-field">
+            <p>{{ form.title(size=25) }}</p>
+        </div>
+        <div class="text-danger">
+            {% for error in form.errors.title %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+
+    <div class=field>
+        <br>
+        <p>{{ form.text.label }}:</p>
+        <div class="field-field">
+            <p>{{ form.text(cols=35, rows=20) }}</p>
+        </div>
+        <div class="text-danger">
+            {% for error in form.errors.text %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field>
+        <button type="submit" class="btn btn-primary">Сохранить изменения стиха</button>
+    </div>
+</form>
+{% endblock %}

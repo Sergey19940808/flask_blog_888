@@ -1,0 +1,20 @@
+{% extends 'layout/base.html' %}
+<!-- шаблон изменения почты -->
+{% block content %}
+<form action="{{ url_for('user_email_change') }}" method="post">
+    <div class=field>
+        <h1>Изменение адреса электронной почты</h1>
+        <h2>Ваша почта: {{ current_user.email }}</h2>
+        <h2>Пожалуйста введите Вашу новую почту:</h2>
+        {{ form.hidden_tag() }}
+        <br>
+        <p>{{ form.email.label }}:</p>
+        <br>
+
+        <div class="field-field">
+            <p>{{ form.email(size=20) }}</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Изменить</button>
+    </div>
+</form>
+{% endblock %}

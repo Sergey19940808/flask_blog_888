@@ -1,0 +1,71 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!-- стр регистрации пользователей -->
+<form class=login-form-reg method=post action="{{ url_for('register') }}">
+    <div class=field>
+        <h1 align=center>Введите данные для регистрации:</h1>
+        {{ form.hidden_tag() }}
+        <p>{{ form.nickname.label }}:</p>
+
+        <div class="field-field">
+            <p>{{ form.nickname(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.nickname %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field>
+        {{ form.hidden_tag() }}
+        <p>{{ form.email.label }}:</p>
+
+        <div class="field-field">
+            <p>{{ form.email(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.email %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field>
+        {{ form.hidden_tag() }}
+        <p>{{ form.password.label }}:</p>
+        <div class="field-field">
+            <p>{{ form.password(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.password %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field>
+        {{ form.hidden_tag() }}
+        <p>{{ form.confirm.label }}:</p>
+
+        <div class="field-field">
+            <p>{{ form.confirm(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.confirm %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary"><h4>Зарегистрироваться</h4></button>
+        <br>
+        <br>
+    </div>
+</form>
+
+{% endblock %}

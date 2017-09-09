@@ -1,0 +1,29 @@
+{% for comment in comment.items %}
+<div class="comment"> <!-- комментарии записи -->
+    <ul>
+        <table>
+            <tr valign="top">
+                <td><img src="{{ comment.comment_user.avatar(70) }}"></td>
+                <td><i>{{ comment.comment_user.nickname }} сказал:</i>
+                    <br><p>{{ comment.body }}</p>
+                    <i>{{ comment.pub_date }}</i>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </ul>
+</div>
+{% endfor %}
+
+<div class="pagination">
+    <!-- пагинация комментариев -->
+    {% if comment.has_prev %}<a href="{{ url_for('entry_comments', id=entry.id, page=comment.prev_num) }}"
+    class="btn btn-info btn-lg active" role="button">&lt;&lt; Предыдущая страница</a>{%
+    else %}<a href="{{ url_for('entry_comments', id=entry.id, page=comment.prev_num) }}"
+    class="btn btn-info btn-lg disabled" role="button">&lt;&lt; Предыдущая страница </a>{% endif %}
+
+    {% if comment.has_next %}<a href="{{ url_for('entry_comments', id=entry.id, page=comment.next_num) }}"
+    class="btn btn-info btn-lg active" role="button">Следующая страница&gt;&gt;</a>
+    {% else %}<a href="{{ url_for('entry_comments', id=entry.id, page=comment.next_num) }}"
+    class="btn btn-info btn-lg disabled" role="button">Следующая страница &gt;&gt;</a>{% endif %}
+</div>

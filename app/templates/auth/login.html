@@ -1,0 +1,50 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!-- форма логина -->
+<form class=login-form method=post action="{{ url_for('login') }}" align="center">
+    <div class=field>
+        <h1 align=center>Введите данные для входа в свой профиль:</h1>
+        {{ form.hidden_tag() }}
+        <br>
+        <p>{{ form.nickname.label }}:</p>
+        <p><kbd>Введите свой логин, но не более 20 символов</kbd></p>
+        <br>
+
+        <div class="field-field">
+            <p>{{ form.nickname(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.nickname %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="field">
+        {{ form.hidden_tag() }}
+        <br>
+        <p>{{ form.password.label }}:</p>
+        <p><kbd>Введите свой пароль, но не более 20 символов</kbd></p>
+        <br>
+
+        <div class="field-field">
+            <p>{{ form.password(size=20) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.password %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary"><h5>Войти</h5></button>
+    </div>
+    <br>
+    <p><em>Нужно создать новый аккаунт? </em><a href="{{ url_for('register') }}">Зарегистрироваться!!</a></p>
+    <p><em>Забыли пароль? </em><a href="{{ url_for('reset') }}">Сбросить пароль!!</a></p>
+</form>
+
+{% endblock %}

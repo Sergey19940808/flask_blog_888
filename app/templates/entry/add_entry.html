@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+
+{% block content %} <!-- форма добавления стиха -->
+<form class=login-form method=post action="{{ url_for('add') }}">
+    <h1 align=center>Заполните поля, для регистрации вашего стиха:</h1>
+    {{ form.hidden_tag() }}
+    <div class=field>
+        <p>{{ form.title.label }}:</p>
+        <p><kbd>Придумайте название.</kbd></p>
+        <p><kbd>Пример формата имени стиха: "Осень !"</kbd></p>
+        <br>
+        <div class="field-field">
+            <p>{{ form.title(size=25) }}</p>
+        </div>
+
+        <div class="text-danger">
+            {% for error in form.errors.title %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class=field>
+        <br>
+        <p>{{ form.text.label }}:</p>
+        <p><kbd>Наберите текст стиха !</kbd></p>
+        <br>
+        <div class="field-field">
+            <p>{{ form.text(cols=35, rows=20) }}</p>
+        </div>
+        <div class="text-danger">
+            {% for error in form.errors.text %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=field>
+        <br>
+        <button type="submit" class="btn btn-primary">Разместить стих</button>
+    </div>
+</form>
+{% endblock %}
